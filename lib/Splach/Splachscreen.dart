@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../onboarding_screens/view/onboarding_ui.dart';
+
 class Splachscreen extends StatefulWidget {
   const Splachscreen({super.key});
 
@@ -21,19 +23,21 @@ class _SplachscreenState extends State<Splachscreen> {
       });
     });
     //fade out
-Future.delayed(Duration(seconds: 5), () {
-  setState(() {
-    isvisible = false;
-  });
-  Future.delayed(Duration(seconds: 1), () {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => OnboardingScreen(),
-      ),
-    );
-  });
-});
+    Future.delayed(Duration(seconds: 5), () {
+      setState(() {
+        isvisible = false;
+      });
+
+      Future.delayed(Duration(seconds: 1), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OnboardingScreen(),
+          ),
+        );
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
