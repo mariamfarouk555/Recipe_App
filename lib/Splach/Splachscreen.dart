@@ -15,18 +15,25 @@ class _SplachscreenState extends State<Splachscreen> {
   void initState() {
     super.initState();
     //fade in
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(Duration(milliseconds: 1300), () {
       setState(() {
         isvisible = true;
       });
     });
     //fade out
-    Future.delayed(Duration(seconds: 5), () {
-      setState(() {
-        isvisible = false;
-      });
-    });
-  }
+Future.delayed(Duration(seconds: 5), () {
+  setState(() {
+    isvisible = false;
+  });
+  Future.delayed(Duration(seconds: 1), () {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => OnboardingScreen(),
+      ),
+    );
+  });
+});
 
   @override
   Widget build(BuildContext context) {
