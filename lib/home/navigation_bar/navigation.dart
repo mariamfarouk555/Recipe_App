@@ -1,5 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:recipe_app/Profile/profilescreen.dart';
+import 'package:recipe_app/favourite/fav_screen.dart';
 
 import '../view/recipe_ui.dart';
 
@@ -15,8 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> screens = [
     HomeContent(),
-    Center(child: Text("Favorites")),
-    Center(child: Text("Profile")),
+    FavScreen(favorites: []),
+    Profilescreen(),
   ];
 
   @override
