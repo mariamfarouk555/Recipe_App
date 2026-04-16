@@ -26,7 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
 
-      body: screens[currentIndex],
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 500),
+        transitionBuilder: (child, animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        child: screens[currentIndex],
+      ),
 
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.react,

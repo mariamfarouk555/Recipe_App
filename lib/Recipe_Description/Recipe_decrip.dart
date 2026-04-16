@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_app/favourite/fav_screen.dart';
 import 'package:recipe_app/home/model/recipe_model.dart';
+
+import '../home/viewModel/home_viewModel.dart';
 
 class RecipeDecrip extends StatefulWidget {
   final Recipe recipe;
@@ -12,8 +15,13 @@ class RecipeDecrip extends StatefulWidget {
 }
 
 class _RecipeDecripState extends State<RecipeDecrip> {
-  final List<Recipe> favorites = [];
-  bool isFavorite = false;
+  late HomeViewModel vm;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    vm = Provider.of<HomeViewModel>(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,27 +40,17 @@ class _RecipeDecripState extends State<RecipeDecrip> {
         actions: [
           IconButton(
             icon: CircleAvatar(
+              backgroundColor: Colors.white,
               child: Icon(
                 Icons.favorite,
-                color: isFavorite ? Colors.red : Colors.grey[600],
+                color: vm.isFavorite(widget.recipe)
+                    ? Colors.red
+                    : Colors.grey[600],
               ),
-              backgroundColor: Colors.white,
             ),
             onPressed: () {
-              setState(() {
-                isFavorite = !isFavorite;
-                if (isFavorite) {
-                  favorites.add(widget.recipe);
-                } else {
-                  favorites.remove(widget.recipe);
-                }
-              });
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FavScreen(favorites: favorites),
-                ),
-              );
+              vm.toggleFavorite(widget.recipe);
+
             },
           ),
           SizedBox(width: 10),

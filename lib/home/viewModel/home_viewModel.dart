@@ -5,6 +5,8 @@ import '../model/recipe_model.dart';
 class HomeViewModel extends ChangeNotifier {
   String searchQuery = "";
   Category selectedCategory = Category.breakfast;
+  List<Recipe> favorites = [];
+
 
   List<Recipe> allRecipes = [
     Recipe(
@@ -311,5 +313,17 @@ class HomeViewModel extends ChangeNotifier {
   void changeCategory(Category category) {
     selectedCategory = category;
     notifyListeners();
+  }
+  void toggleFavorite(Recipe recipe) {
+    if (favorites.contains(recipe)) {
+      favorites.remove(recipe);
+    } else {
+      favorites.add(recipe);
+    }
+    notifyListeners();
+  }
+
+  bool isFavorite(Recipe recipe) {
+    return favorites.contains(recipe);
   }
 }
