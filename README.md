@@ -42,3 +42,6 @@ The application includes several animations and UI enhancements:
 - Lottie (Animations)
 - Google Fonts
 - Material Design
+## Demo Video
+
+https://github.com/mariamfarouk555/Recipe_App/tree/develop/assets/videos/recipe_app.mp4
