@@ -26,8 +26,13 @@ class RecipeCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            CircleAvatar(radius: 25, backgroundImage: AssetImage(recipe.image)),
-            SizedBox(width: 12),
+            Hero(
+              tag: recipe.title,
+              child: CircleAvatar(
+                radius: 25,
+                backgroundImage: AssetImage(recipe.image),
+              ),
+            ),            SizedBox(width: 12),
 
             Expanded(
               child: Column(
